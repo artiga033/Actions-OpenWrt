@@ -21,12 +21,12 @@
 ## 参考: https://github.com/unkaer/Actions-OpenWrt-Xiaomi-R4A/blob/main/diy-part1.sh
 
 ## 1.修改 mt7628an_xiaomi_mi-router-4.dtsi
-export shanchu1=$(grep  -a -n -e '&spi0 {' target/linux/ramips/dts/mt7628an_xiaomi_mi-router-4.dtsi|cut -d ":" -f 1)
+export shanchu1=$(grep  -a -n -e 'fixed-partitions' target/linux/ramips/dts/mt7628an_xiaomi_mi-router-4.dtsi|cut -d ":" -f 1)
 export shanchu2=$(grep  -a -n -e '&state_default {' target/linux/ramips/dts/mt7628an_xiaomi_mi-router-4.dtsi|cut -d ":" -f 1)
 export shanchu2=$(expr $shanchu2 - 1)
 export shanchu2=$(echo $shanchu2"d")
 sed -i $shanchu1,$shanchu2 target/linux/ramips/dts/mt7628an_xiaomi_mi-router-4.dtsi
-grep  -Pzo '&spi0[\s\S]*};[\s]*};[\s]*};[\s]*};' target/linux/ramips/dts/mt7621_youhua_wr1200js.dts > youhua.txt
+grep  -Pzo '\t*compatible = "fixed-partitions";[\s\S]*};[\s]*};[\s]*};[\s]*};' target/linux/ramips/dts/mt7621_youhua_wr1200js.dts > youhua.txt
 echo "" >> youhua.txt
 echo "" >> youhua.txt
 export shanchu1=$(expr $shanchu1 - 1)
